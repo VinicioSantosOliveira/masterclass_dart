@@ -4,6 +4,7 @@ void main(List<String> args) async {
   counter.addListener(() {
     print("\x1B[2J\x1B[0;0H");
     print((List.generate(counter.value, (index) => "=")..add(">")).join());
+    //print("${counter.value}%");
   });
 
   counter.increment();
@@ -16,6 +17,11 @@ void main(List<String> args) async {
   await Future.delayed(Duration(seconds: 1));
   counter.increment();
   await Future.delayed(Duration(seconds: 1));
+
+  // for (var i = 0; i <= 99; i++) {
+  //   counter.increment();
+  //   await Future.delayed(Duration(milliseconds: 50));
+  // }
 }
 
 class ValueNotifier<T> extends ChangeNotifier implements ValueListenable<T> {
@@ -24,7 +30,7 @@ class ValueNotifier<T> extends ChangeNotifier implements ValueListenable<T> {
 
   @override
   T get value => _value;
-  
+
   set value(T newValue) {
     if (_value == newValue) {
       return;
